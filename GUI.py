@@ -8,9 +8,10 @@ from fuction import method
 root = Tk()  # 创建主窗体
 root.title("抠图君")
 root.geometry("450x280+750+200")
-root.iconbitmap(r'./image/w.ico')
+root.iconbitmap(r'D:\ico\w.ico')
+root.resizable(0, 0)
 huabu = tkinter.Canvas(root, width=450, height=280)
-tupian = method.get_image(r'./image/4.jpg', 450, 280)
+tupian = method.get_image(r'D:\ico\4.jpg', 450, 280)
 huabu.create_image(225, 140, image=tupian)
 huabu.pack()
 
@@ -47,7 +48,7 @@ btn1 = Button(
     cursor='pirate',
     command=lambda: method.liulan(str4))
 btn1.place(x=330, y=126)
-button_image = method.get_image(r'./image/7.jpg', 50, 28)
+button_image = method.get_image(r'D:\ico\7.jpg', 50, 28)
 btn = Button(
     root,
     text="开始抠图",
