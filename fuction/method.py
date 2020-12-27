@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import tkinter.filedialog
 from tkinter import messagebox
 import threading
+import time
 
 def thread(imagepath, savepath, xuanze):
     t = threading.Thread(target=method, args=(imagepath, savepath, xuanze,))
@@ -24,7 +25,7 @@ def method(imagepath, savepath, xuanze):
             headers={'X-Api-Key': '9oEfkNXs2SoX1Ktbktx9GRpe'},
         )
         if response.status_code == requests.codes.ok:
-            with open(savepath + "//" + "1.jpg", 'wb') as out:
+            with open(savepath + "/" + time1()+imagepath[-4:], 'wb') as out:
                 out.write(response.content)
             tkinter.messagebox.showinfo('提示!', '抠图成功！')
         else:
@@ -39,7 +40,7 @@ def method(imagepath, savepath, xuanze):
             headers={'X-Api-Key': '9oEfkNXs2SoX1Ktbktx9GRpe'},
         )
         if response.status_code == requests.codes.ok:
-            with open(savepath + "//" + "1.jpg", 'wb') as out:
+            with open(savepath + "/" + time1()+imagepath[-4:], 'wb') as out:
                 out.write(response.content)
             tkinter.messagebox.showinfo('提示!', '抠图成功！')
         else:
@@ -128,3 +129,6 @@ def toumingdu(root):
         command=lambda :print_selection(root,S.get()))
     btn.place(x=98, y=50)
     top1.mainloop()
+def time1():
+    s=time.strftime('%Y-%m-%d%H%M%S',time.localtime())
+    return s
