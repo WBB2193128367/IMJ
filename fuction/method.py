@@ -1,9 +1,9 @@
+from tkinter import *
 import requests
 from PIL import Image, ImageTk
 import tkinter.filedialog
 from tkinter import messagebox
 import threading
-
 
 def thread(imagepath, savepath, xuanze):
     t = threading.Thread(target=method, args=(imagepath, savepath, xuanze,))
@@ -55,17 +55,76 @@ def method(imagepath, savepath, xuanze):
 
 
 def get_image(filename, width, height):
-    im = Image.open(filename).resize((width, height))
+    im =Image.open(filename).resize((width, height))
     return ImageTk.PhotoImage(im)
 
 
 def liulan(str4):
     m = tkinter.filedialog.askdirectory()
     str4.set(m)
-    return m
+    #return m
 
 
 def liulan1(str4):
     m = tkinter.filedialog.askopenfilename()
     str4.set(m)
-    return m
+    #return m
+
+def guanyu():
+    tkinter.messagebox.showinfo('提示', '该软件由WBB开发，仅供学习使用，请勿用作商用！！！')
+
+
+def print_selection(root,v):
+    root.attributes("-alpha",1-v)
+
+
+# def toumingdu(root):
+#     top1 = Toplevel()  # 创建弹出式窗体
+#     top1.title('设置页面')
+#     top1.geometry("250x100+800+280")
+#     entry = Entry(top1)
+#     entry.place(x=10, y=10)
+#     btn = Button(
+#         top1,
+#         text="确认",
+#         bd=8,
+#         cursor='pirate',
+#         relief="raised",
+#         fg='black',
+#         width=5,
+#         height=1,
+#         compound=tkinter.CENTER,
+#         command=lambda :print_selection(root,entry.get(),top1))
+#     btn.place(x=30, y=40)
+#     top1.mainloop()
+def toumingdu(root):
+    top1 = Toplevel()  # 创建弹出式窗体
+    top1.title('设置页面')
+    top1.geometry("250x100+800+280")
+    top1.resizable(0, 0)
+    lb = Label(top1, text="清晰")
+    lb.place(x=18, y=10)
+    lb1 = Label(top1, text="模糊")
+    lb1.place(x=205, y=10)
+    S = Scale(
+        top1,
+        from_=0,
+        to=1,
+        resolution=0.1,
+        showvalue=0,
+        orient=HORIZONTAL,
+        length=150)
+    S.place(x=50, y=10)
+    btn = Button(
+        top1,
+        text="确认",
+        bd=8,
+        cursor='pirate',
+        relief="raised",
+        fg='black',
+        width=5,
+        height=1,
+        compound=tkinter.CENTER,
+        command=lambda :print_selection(root,S.get()))
+    btn.place(x=98, y=50)
+    top1.mainloop()

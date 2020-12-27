@@ -1,7 +1,6 @@
 # encoding="utf-8"
-
-from tkinter import ttk
 from tkinter import *
+from tkinter import ttk
 import tkinter.filedialog
 from fuction import method
 
@@ -10,10 +9,23 @@ root.title("抠图君")
 root.geometry("450x280+750+200")
 root.iconbitmap(r'D:\ico\w.ico')
 root.resizable(0, 0)
+
 huabu = tkinter.Canvas(root, width=450, height=280)
-tupian = method.get_image(r'D:\ico\4.jpg', 450, 280)
+tupian = method.get_image(r'D:\ico\7.jpg', 450, 280)
 huabu.create_image(225, 140, image=tupian)
 huabu.pack()
+
+
+menubar = Menu(root)  # 定义一个菜单栏
+file = Menu(menubar, tearoff=0)
+menubar.add_cascade(label='设置', menu=file)
+file.add_command(label='更改透明度', command=lambda: method.toumingdu(root))
+menubar.add_cascade(label='关于', command=method.guanyu)
+root.config(menu=menubar)
+
+
+
+
 
 
 lb = Label(root, text="请选择图片的类型:  ", state='active')
